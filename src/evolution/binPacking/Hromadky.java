@@ -129,7 +129,7 @@ public class Hromadky {
             ea.setFitnessFunction(fitness);
             ea.addMatingSelector(new RouletteWheelSelector());
             ea.addOperator(new OnePtXOver(xoverProb));
-            ea.addOperator(new IntegerMutation(mutProb, mutProbPerBit));
+            ea.addOperator(new HighLowMutationOperator(mutProb, mutProbPerBit, K, weights));
             ea.addEnvironmentalSelector(new RouletteWheelSelector());
 
             OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(fitnessFilePrefix + "." + number));

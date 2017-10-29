@@ -19,7 +19,7 @@ public class EvolutionaryAlgorithm {
     ArrayList<Operator> operators;
     ArrayList<Selector> matingSelectors;
     ArrayList<Selector> environmentalSelectors;
-    double eliteSize = 0.0;
+    double eliteSize = 0.05;
     FitnessEvaluator fitness;
     Replacement replacement;
     int generationNo = 0;
