@@ -31,6 +31,14 @@ public class HromadkyFitness implements FitnessFunction {
 
     }
 
+    private int avg(int[] array) {
+        int sum = 0;
+        for (int i = 0; i < array.length; ++i) {
+            sum += array[i];
+        }
+        return sum / array.length;
+    }
+
     @Override
     public double evaluate(Individual ind) {
 
@@ -49,8 +57,12 @@ public class HromadkyFitness implements FitnessFunction {
 
         ind.setObjectiveValue(max - min);    // tohle doporucuji zachovat
 
-        //sem muzete vlozit vlastni vypocet fitness, muzete samozrejme vyuzit spocitane hmotnosti hromadek
-
-        return 1 / (max - min);
+        // variance = E(X-EX)^2
+        int ex = avg(binWeights);
+        int[] x_ex = binWeights.clone();
+        for (int i = 0; i < x_ex.length; ++i) {
+            x_ex[i] = (x_ex[i] - ex) * (x_ex[i] - ex);
+        }
+        return avg(x_ex);
     }
 }
